@@ -1,7 +1,7 @@
 ﻿<div align="center">
 
 # PlayerMetrics
-PlayerMetrics is an SCP:SL server plugin that tracks and displays the time players spend on the server. It is mostly useful for server head admins to track play time requirements for admins and inter admins, but it can also be used in many different ways.
+PlayerMetrics is an SCP:SL server plugin that tracks and displays the time players spend on the server. It is mostly useful for server head admins to track play time requirements for admins and inter admins, but it can also be used in many different ways.<br>
 ![Release](https://img.shields.io/github/v/release/MollyIO/PlayerMetrics)
 ![License](https://img.shields.io/github/license/MollyIO/PlayerMetrics)
 ![Downloads](https://img.shields.io/github/downloads/MollyIO/PlayerMetrics/total)
