@@ -15,7 +15,7 @@ namespace PlayerMetrics
         public override string Name { get; } = "PlayerMetrics";
         public override string Description { get; } = "A plugin to track and display player metrics.";
         public override string Author { get; } = "MollyIO";
-        public override Version Version { get; } = new Version(1, 0, 0);
+        public override Version Version { get; } = new Version(1, 0, 1);
         public override Version RequiredApiVersion { get; } = new Version(LabApiProperties.CompiledVersion);
         
         public static PlayerMetrics PluginInstance { get; private set; }
