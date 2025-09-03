@@ -14,11 +14,15 @@ namespace PlayerMetrics
         
         public static void OnPlayerJoin(PlayerJoinedEventArgs ev)
         {
+            if (ev.Player.DoNotTrack) return;
+            
             LoginTimes[ev.Player] = DateTime.Now;
         }
         
         public static void OnPlayerLeft(PlayerLeftEventArgs ev)
         {
+            if (ev.Player.DoNotTrack) return;
+            
             if (!LoginTimes.Remove(ev.Player, out var loginTime))
             {
                 Logger.Warn($"Could not find login time for player {ev.Player.Nickname}.");
