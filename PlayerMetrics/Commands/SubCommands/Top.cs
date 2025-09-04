@@ -16,7 +16,7 @@ namespace PlayerMetrics.Commands.SubCommands
 
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
-            if (!sender.HasPermissions($"{PlayerMetrics.PluginInstance.Name.ToLower()}.{Command.ToLower()}")) // Default variant: playermetrics.top
+            if (!sender.HasPermissions($"{PlayerMetrics.PluginInstance.Name.ToLower()}.{Command.ToLower()}") && PlayerMetrics.PluginInstance.Config != null && PlayerMetrics.PluginInstance.Config.CheckPermissions) // Default variant: playermetrics.top
             {
                 response = "<color=red>You do not have permission to use this command.</color>";
                 return false;

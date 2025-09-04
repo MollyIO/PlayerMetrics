@@ -5,6 +5,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using CommandSystem;
 using LabApi.Features.Permissions;
+using LabApi.Features.Wrappers;
 using PlayerMetrics.Models;
 using PlayerMetrics.Services;
 
@@ -51,7 +52,7 @@ namespace PlayerMetrics.Commands.SubCommands
         
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
-            if (!sender.HasPermissions($"{PlayerMetrics.PluginInstance.Name.ToLower()}.{Command.ToLower()}")) // Default variant: playermetrics.specific
+            if (!sender.HasPermissions($"{PlayerMetrics.PluginInstance.Name.ToLower()}.{Command.ToLower()}") && PlayerMetrics.PluginInstance.Config != null && PlayerMetrics.PluginInstance.Config.CheckPermissions) // Default variant: playermetrics.specific
             {
                 response = "<color=red>You do not have permission to use this command.</color>";
                 return false;
@@ -61,6 +62,12 @@ namespace PlayerMetrics.Commands.SubCommands
             {
                 response = $"<color=red>Usage: {Description}</color>";
                 return false;
+            }
+            
+            Player player = Player.Get(sender);
+            if (player != null && player.UserGroup == null)
+            {
+                arguments[0] = player.UserId;
             }
             
             if (!PlayerMetrics.DatabaseInstance.TryGetPlayerId(arguments.At(0), out string userId))

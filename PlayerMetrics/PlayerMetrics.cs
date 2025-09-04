@@ -33,7 +33,8 @@ namespace PlayerMetrics
             PlayerEvents.Joined += EventHandlers.OnPlayerJoin;
             PlayerEvents.Left += EventHandlers.OnPlayerLeft;
             
-            _ = UpdaterService.CheckUpdate();
+            if (Config != null && Config.UseAutoUpdater)
+                _ = UpdaterService.CheckUpdate();
         }
 
         public override void Disable()

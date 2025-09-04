@@ -50,7 +50,18 @@ check_permissions: true
 ```
 
 ## Usage
-When a player joins the server, their join time is recorded and when they leave, this record is saved to a database. The plugin provides the following commands to access player metrics:
+When a player joins the server, their join time is recorded and when they leave, this record is saved to a database.
+
+If you use check_permission in the plugin config, make sure to give the appropriate permissions to your admins or players who should be able to use the commands. The permissions are:
+* `playermetrics.info` - Allows the use of the `playermetrics info` command.
+* `playermetrics.top` - Allows the use of the `playermetrics top` command.
+* `playermetrics.specific` - Allows the use of the `playermetrics specific` command.
+
+Also if you want to give specific admin access to all commands, you can give them the `playermetrics.*` permission.
+
+Also you can give this permissions to a regular players so they can check their own stats using default console accessed by pressing `~`. **They won't be able to check other players stats.**
+
+The plugin provides the following commands to access player metrics:
 
 | Command                                                 | Description                                                                                                                                                                                                                                                                | Example                                       |
 |---------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------|

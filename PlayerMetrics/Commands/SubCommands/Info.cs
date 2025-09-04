@@ -17,15 +17,21 @@ namespace PlayerMetrics.Commands.SubCommands
         
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
-            if (!sender.HasPermissions($"{PlayerMetrics.PluginInstance.Name.ToLower()}.{Command.ToLower()}")) // Default variant: playermetrics.info
+            if (!sender.HasPermissions($"{PlayerMetrics.PluginInstance.Name.ToLower()}.{Command.ToLower()}") && PlayerMetrics.PluginInstance.Config != null && PlayerMetrics.PluginInstance.Config.CheckPermissions) // Default variant: playermetrics.info
             {
                 response = "<color=red>You do not have permission to use this command.</color>";
                 return false;
             }
             
+            Player player = Player.Get(sender);
+            if (player != null && player.UserGroup == null)
+            {
+                arguments = ArraySegment<string>.Empty;
+            }
+            
             if (arguments.Count < 1)
             {
-                arguments[0] = Player.Get(sender)?.UserId;
+                arguments[0] = player?.UserId;
             }
             
             ProcessedPlayerData processedPlayerData = PlayerMetrics.DatabaseInstance.GetProcessedPlayerData(arguments.At(0));
